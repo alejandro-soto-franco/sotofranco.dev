@@ -14,7 +14,7 @@ export default function Home() {
         <p className="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
           Mathematician · Quant Researcher · Systems Engineer
           <br />
-          PDE theory, geometric analysis, high-performance systems (Rust/CUDA), relational value dynamics, and mathematical physics.
+          PDE theory, hyperbolic analysis, high-performance systems (Rust/CUDA), relational value dynamics, and mathematical physics.
         </p>
 
         {/* Navigation */}
