@@ -1,0 +1,8 @@
+/* Optional tweaks for better alignment with Computer Modern */
+.katex {
+  font-size: 1em;
+}
+
+.katex-display {
+  margin: 1.2rem 0;
+}

@@ -1,0 +1,6 @@
+/* Computer Modern Serif */
+/* Font import moved to `app/globals.css` to use self-hosted fonts. */
+
+:root {
+  --font-body: "Computer Modern Serif", serif;
+}
