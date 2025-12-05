@@ -7,22 +7,21 @@ export default function Home() {
     <main className="min-h-screen flex items-center justify-center px-6">
       <div className="max-w-3xl w-full space-y-10 py-24">
 
-        {/* Name */}
-        <h1 className="text-5xl font-semibold tracking-tight">
-          Alejandro Soto Franco
-        </h1>
+      {/* Name */}
+      <h1 className="text-5xl font-semibold tracking-tight">
+        Alejandro Soto Franco
+      </h1>
 
-        {/* Subtitle */}
-        <p className="text-xl leading-relaxed text-neutral-700 dark:text-neutral-300">
-          Mathematician · Quant Researcher · Systems Engineer
-          <br />
-          PDE theory, geometric analysis, high-performance systems (Rust/CUDA), relational value dynamics, and mathematical physics. 
-          <MathBlock tex={"\\iint_{Q_r (z_0)} f(x) \\, \\mathrm{d}x \\, \\mathrm{d}t \\label{1}"} display />
-        </p>
+      {/* Subtitle */}
+      <p className="text-xl leading-relaxed text-neutral-700 dark:text-neutral-300">
+      Mathematician · Quant Researcher · Systems Engineer
+      </p>
 
-        <p>
-          See <Eq label="1" />.
-        </p>
+      <p className="text-xl leading-relaxed text-neutral-700 dark:text-neutral-300 mt-4">
+      PDE theory, geometric analysis, high-performance systems (Rust/CUDA),
+      relational value dynamics, and mathematical physics.
+      </p>
+
 
         {/* Navigation */}
         <nav className="space-y-3">
