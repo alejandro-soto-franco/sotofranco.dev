@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Eq from "./components/Eq";
+import MathBlock from "./components/MathBlock";
 
 export default function Home() {
   return (
@@ -14,7 +16,12 @@ export default function Home() {
         <p className="text-xl leading-relaxed text-neutral-700 dark:text-neutral-300">
           Mathematician · Quant Researcher · Systems Engineer
           <br />
-          PDE theory, geometric analysis, high-performance systems (Rust/CUDA), relational value dynamics, and mathematical physics.
+          PDE theory, geometric analysis, high-performance systems (Rust/CUDA), relational value dynamics, and mathematical physics. 
+          <MathBlock tex={"\\iint_{Q_r (z_0)} f(x) \\, \\mathrm{d}x \\, \\mathrm{d}t \\label{1}"} display />
+        </p>
+
+        <p>
+          See <Eq label="1" />.
         </p>
 
         {/* Navigation */}
@@ -22,7 +29,7 @@ export default function Home() {
           <SectionLink href="/research">Research</SectionLink>
           <SectionLink href="/notes">Technical Notes</SectionLink>
           <SectionLink href="/rvt">Relational Value Theory</SectionLink>
-          <SectionLink href="/nse">Navier–Stokes Program</SectionLink>
+          <SectionLink href="/nse">Navier-Stokes Program</SectionLink>
           <SectionLink href="/projects">Software & Engineering</SectionLink>
           <SectionLink href="/about">About / CV</SectionLink>
         </nav>

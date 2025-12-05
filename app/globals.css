@@ -52,6 +52,20 @@ body {
 --------------------------------------------------------*/
 .katex { font-size: 1em; }
 
+/* Equation numbering styles */
+.katex-eq {
+  display: block;
+  position: relative;
+}
+.katex-eq .eqnum {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 0.75rem;
+  color: var(--foreground);
+}
+
 
 /* -------------------------------------------------------
    Smooth Typography Defaults
