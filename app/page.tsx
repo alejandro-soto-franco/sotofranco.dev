@@ -6,12 +6,12 @@ export default function Home() {
       <div className="max-w-3xl w-full space-y-10 py-24">
 
         {/* Name */}
-        <h1 className="text-4xl font-semibold tracking-tight">
+        <h1 className="text-6xl font-semibold tracking-tight">
           Alejandro Soto Franco
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
+        <p className="text-xl leading-relaxed text-neutral-700 dark:text-neutral-300">
           Mathematician · Quant Researcher · Systems Engineer
           <br />
           PDE theory, geometric analysis, high-performance systems (Rust/CUDA), relational value dynamics, and mathematical physics.
