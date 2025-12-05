@@ -11,7 +11,7 @@ export default function Home() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-2xl leading-relaxed text-neutral-700 dark:text-neutral-300">
+        <p className="text-xl leading-relaxed text-neutral-700 dark:text-neutral-300">
           Mathematician · Quant Researcher · Systems Engineer
           <br />
           PDE theory, geometric analysis, high-performance systems (Rust/CUDA), relational value dynamics, and mathematical physics.
