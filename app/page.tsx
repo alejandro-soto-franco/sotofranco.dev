@@ -29,7 +29,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="pt-10 text-neutral-500 text-sm dark:text-neutral-400">
-          © {new Date().getFullYear()} · sotofranco.dev
+          © {new Date().getFullYear()} · sotofranco.dev · all rights reserved
         </footer>
       </div>
     </main>
