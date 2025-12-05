@@ -8,7 +8,7 @@
 
 /* === Option A: Computer Modern Serif (LaTeX default) === */
 :root {
-  --font-body: "Computer Modern Serif", serif;
+  --font-body: "Computer Modern Sans", sans-serif;
 }
 
 /* === Option B: Computer Modern Sans (LaTeX sans) === */
