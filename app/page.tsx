@@ -25,12 +25,7 @@ export default function Home() {
 
         {/* Navigation */}
         <nav className="space-y-3">
-          <SectionLink href="/research">Research</SectionLink>
-          <SectionLink href="/notes">Technical Notes</SectionLink>
-          <SectionLink href="/rvt">Relational Value Theory</SectionLink>
           <SectionLink href="/nse">Navier-Stokes Program</SectionLink>
-          <SectionLink href="/projects">Software & Engineering</SectionLink>
-          <SectionLink href="/about">About / CV</SectionLink>
         </nav>
 
         {/* Footer */}

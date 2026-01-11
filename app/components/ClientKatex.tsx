@@ -11,12 +11,21 @@ function escapeHtml(str: string) {
     .replace(/'/g, "&#039;");
 }
 
+function unescapeHtml(str: string) {
+  return str
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'");
+}
+
 export default function ClientKatex() {
   useEffect(() => {
     const skipTags = new Set(["CODE", "PRE", "SCRIPT", "STYLE", "TEXTAREA", "INPUT"]);
 
     const displayRegex = /\$\$([\s\S]+?)\$\$/g;
-    const inlineRegex = /\$(?!\s)([^\$\n]+?)(?!\s)\$/g;
+    const inlineRegex = /\$([^\$\n]+?)\$/g;
 
     // initialize global counter/map ONCE per page load
     if (!(window as any).__eqCounter) {
@@ -25,6 +34,70 @@ export default function ClientKatex() {
     }
 
     const labelRegex = /\\label\{([^}]+)\}/;
+
+    function renderTextWithMath(text: string): { html: string; hasMatch: boolean } {
+      // Reset regex state
+      displayRegex.lastIndex = 0;
+      inlineRegex.lastIndex = 0;
+
+      let html = escapeHtml(text);
+      let hasMatch = false;
+
+      // Process display math
+      html = html.replace(displayRegex, (match, content) => {
+        hasMatch = true;
+        try {
+          content = unescapeHtml(content);
+          content = content.replace(/\\label(\d+)/g, '\\label{$1}');
+          const m = content.match(labelRegex);
+          let label: string | null = null;
+          if (m) {
+            label = m[1];
+            content = content.replace(labelRegex, '').trim();
+          }
+          const rendered = katex.renderToString(content, { displayMode: true, throwOnError: false });
+          if (label) {
+            const existing = (window as any).__eqMap && (window as any).__eqMap[label];
+            let counter: number;
+            if (existing !== undefined) {
+              counter = existing;
+            } else {
+              counter = ++(window as any).__eqCounter;
+              (window as any).__eqMap[label] = counter;
+              try { window.dispatchEvent(new CustomEvent('eq-map-updated', { detail: { label, counter } })); } catch(e){}
+            }
+            return `<span class="katex-eq" id="eq:${escapeHtml(label)}">${rendered}<span class="eqnum">(${counter})</span></span>`;
+          }
+          return rendered;
+        } catch (e) {
+          return `<span class="katex-error">${escapeHtml(String(e))}</span>`;
+        }
+      });
+
+      // Process inline math
+      html = html.replace(inlineRegex, (match, content) => {
+        hasMatch = true;
+        try {
+          return katex.renderToString(unescapeHtml(content), { displayMode: false, throwOnError: false });
+        } catch (e) {
+          return `<span class="katex-error">${escapeHtml(String(e))}</span>`;
+        }
+      });
+
+      return { html, hasMatch };
+    }
+
+    function replaceTextNode(node: Text) {
+      const text = node.textContent || '';
+      if (!text.includes('$')) return; // quick bail-out
+      const { html, hasMatch } = renderTextWithMath(text);
+      if (!hasMatch) return;
+      const wrapper = document.createElement('span');
+      wrapper.innerHTML = html;
+      const frag = document.createDocumentFragment();
+      while (wrapper.firstChild) frag.appendChild(wrapper.firstChild);
+      node.parentNode?.replaceChild(frag, node);
+    }
 
     function processNode(node: Node) {
       if (node.nodeType === Node.ELEMENT_NODE) {
@@ -38,7 +111,7 @@ export default function ClientKatex() {
           child.nodeType === Node.ELEMENT_NODE && (child as Element).tagName === 'BR'
         );
         
-        if (hasOnlyTextAndInlineChildren && el.textContent?.includes("$$")) {
+        if (hasOnlyTextAndInlineChildren && el.textContent && el.textContent.includes("$")) {
           // Collect all text from this element
           let fullText = "";
           const textNodeArray: Array<{ node: Node; start: number; end: number }> = [];
@@ -57,60 +130,7 @@ export default function ClientKatex() {
           
           console.log(`[ClientKatex] Element <${el.tagName}> fullText (${fullText.length} chars): ${fullText.substring(0, 100)}`);
           
-          displayRegex.lastIndex = 0;
-          inlineRegex.lastIndex = 0;
-
-          let html = escapeHtml(fullText);
-          let hasMatch = false;
-          
-          // Process display math
-          html = html.replace(displayRegex, (match, content) => {
-            hasMatch = true;
-            console.log(`[ClientKatex] Found display math: ${match.substring(0, 50)}...`);
-            try {
-              // First, reconstruct braces that React may have split
-              content = content.replace(/\\label(\d+)/g, '\\label{$1}');
-              console.log(`[ClientKatex] After brace reconstruction: ${content.substring(0, 100)}...`);
-              
-              const m = content.match(labelRegex);
-              let label = null;
-              if (m) {
-                label = m[1];
-                content = content.replace(labelRegex, "").trim();
-                console.log(`[ClientKatex] Found label: "${label}"`);
-              }
-
-              const rendered = katex.renderToString(content, { displayMode: true, throwOnError: false });
-
-              if (label) {
-                const counter = ++(window as any).__eqCounter;
-                (window as any).__eqMap[label] = counter;
-                console.log(`[ClientKatex] Assigned label "${label}" → ${counter}`);
-                try {
-                  window.dispatchEvent(new CustomEvent('eq-map-updated', { detail: { label, counter } }));
-                } catch (e) {
-                  /* ignore */
-                }
-                return `<span class="katex-eq" id="eq:${escapeHtml(label)}">${rendered}<span class="eqnum">(${counter})</span></span>`;
-              }
-              return rendered;
-            } catch (e) {
-              console.error(`[ClientKatex] Error rendering:`, e);
-              return `<span class="katex-error">${escapeHtml(String(e))}</span>`;
-            }
-          });
-          
-          // Process inline math
-          html = html.replace(inlineRegex, (match, content) => {
-            hasMatch = true;
-            try {
-              return katex.renderToString(content, { displayMode: false, throwOnError: false });
-            } catch (e) {
-              return `<span class="katex-error">${escapeHtml(String(e))}</span>`;
-            }
-          });
-
-          // If math was processed, replace element's innerHTML
+          const { html, hasMatch } = renderTextWithMath(fullText);
           if (hasMatch && html !== escapeHtml(fullText)) {
             console.log(`[ClientKatex] Replacing innerHTML`);
             el.innerHTML = html;
@@ -118,9 +138,11 @@ export default function ClientKatex() {
           }
         }
         
-        // Recurse into child elements
+        // Process text nodes inline within complex elements (mixed children)
         for (const child of Array.from(el.childNodes)) {
-          if (child.nodeType === Node.ELEMENT_NODE) {
+          if (child.nodeType === Node.TEXT_NODE) {
+            replaceTextNode(child as Text);
+          } else if (child.nodeType === Node.ELEMENT_NODE) {
             processNode(child);
           }
         }
@@ -137,58 +159,24 @@ export default function ClientKatex() {
     
     // Targeted pass: process paragraph-like elements to handle split text nodes robustly
     function processParagraphs() {
-      const tags = ['p', 'li', 'figcaption', 'blockquote', 'div'];
+      const tags = ['p', 'li', 'figcaption', 'blockquote', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
       for (const tag of tags) {
         for (const el of Array.from(document.getElementsByTagName(tag))) {
           if (skipTags.has(el.tagName)) continue;
-          if (!el.textContent || !el.textContent.includes('$$')) continue;
+          if (!el.textContent || !el.textContent.includes('$')) continue;
           // Only process simple paragraphs (no complex children)
           const simple = Array.from(el.childNodes).every(c => c.nodeType === Node.TEXT_NODE || (c.nodeType === Node.ELEMENT_NODE && (c as Element).tagName === 'BR'));
-          if (!simple) continue;
+          if (!simple) {
+            // Mixed content paragraph: replace text nodes that contain math
+            for (const child of Array.from(el.childNodes)) {
+              if (child.nodeType === Node.TEXT_NODE) replaceTextNode(child as Text);
+            }
+            continue;
+          }
 
           const fullText = el.textContent || '';
-          displayRegex.lastIndex = 0;
-          inlineRegex.lastIndex = 0;
-          let html = escapeHtml(fullText);
-          let hasMatch = false;
-
-          html = html.replace(displayRegex, (match, content) => {
-            hasMatch = true;
-            try {
-              content = content.replace(/\\label(\d+)/g, '\\label{$1}');
-              const m = content.match(labelRegex);
-              let label = null;
-              if (m) {
-                label = m[1];
-                content = content.replace(labelRegex, '').trim();
-              }
-              const rendered = katex.renderToString(content, { displayMode: true, throwOnError: false });
-              if (label) {
-                const existing = (window as any).__eqMap && (window as any).__eqMap[label];
-                let counter: number;
-                if (existing !== undefined) {
-                  counter = existing;
-                } else {
-                  counter = ++(window as any).__eqCounter;
-                  (window as any).__eqMap[label] = counter;
-                  try { window.dispatchEvent(new CustomEvent('eq-map-updated', { detail: { label, counter } })); } catch(e){}
-                }
-                return `<span class="katex-eq" id="eq:${escapeHtml(label)}">${rendered}<span class="eqnum">(${counter})</span></span>`;
-              }
-              return rendered;
-            } catch (e) {
-              return `<span class="katex-error">${escapeHtml(String(e))}</span>`;
-            }
-          });
-
-          html = html.replace(inlineRegex, (match, content) => {
-            hasMatch = true;
-            try { return katex.renderToString(content, { displayMode: false, throwOnError: false }); } catch(e) { return `<span class="katex-error">${escapeHtml(String(e))}</span>`; }
-          });
-
-          if (hasMatch) {
-            el.innerHTML = html;
-          }
+          const { html, hasMatch } = renderTextWithMath(fullText);
+          if (hasMatch) el.innerHTML = html;
         }
       }
     }
