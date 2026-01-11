@@ -15,7 +15,9 @@ export default function Page() {
         </p>
         <div className="my-4">
           <MathBlock
-            tex={"\\partial_t u + (u \\cdot \\nabla)u = -\\nabla p + \\nu \\Delta u, \\qquad \\nabla \\cdot u = 0 \\label{nse}"}
+            tex={
+              "\\partial_t u + (u \\cdot \\nabla)u = -\\nabla p + \\nu \\Delta u, \\qquad \\nabla \\cdot u = 0 \\label{nse}"
+            }
             display
           />
         </div>
@@ -23,11 +25,11 @@ export default function Page() {
           on {"$\\mathbb{R}^3 \\times (0, T)$"} with initial data {"$u_0 \\in L^2(\\mathbb{R}^3)$"} divergence-free.
         </p>
         <p className="mt-4">
-          The fundamental question posed by the Clay Millennium Prize is whether Leray–Hopf weak solutions 
+          The fundamental question posed by the Clay Millennium Prize is whether Leray–Hopf weak solutions
           remain smooth for all positive times, or whether finite-time blow-up can occur.
         </p>
         <p className="mt-4">
-          <strong>We aim to prove <TheoremRef label="main" />:</strong> Every Leray–Hopf weak solution is smooth 
+          <strong>We aim to prove <TheoremRef label="main" />:</strong> Every Leray–Hopf weak solution is smooth
           on {"$(0, T)$"}, establishing that finite-time blow-up is impossible. This program is evolving and has
           not been peer-reviewed. An ArXiv submission is currently pending. This is a high-level outline for which
           no correctness is asserted beyond the author's current understanding.
@@ -41,14 +43,22 @@ export default function Page() {
           A vector field {"$u: \\mathbb{R}^3 \\times (0, T) \\to \\mathbb{R}^3$"} is a <em>Leray–Hopf weak solution</em> if:
         </p>
         <ol className="list-decimal list-inside my-4 space-y-2">
-          <li>{"$u \\in L^\\infty(0, T; L^2(\\mathbb{R}^3)) \\cap L^2(0, T; \\dot{H}^1(\\mathbb{R}^3))$"},</li>
+          <li>
+            {
+              "$u \\in L^\\infty(0, T; L^2(\\mathbb{R}^3)) \\cap L^2(0, T; \\dot{H}^1(\\mathbb{R}^3))$"
+            }
+          </li>
           <li>{"$\\nabla \\cdot u = 0$"} in the sense of distributions,</li>
-          <li>{"$u$"} satisfies (Eq <Eq label="nse" />) weakly against divergence-free test functions,</li>
+          <li>
+            {"$u$"} satisfies (Eq <Eq label="nse" />) weakly against divergence-free test functions,
+          </li>
           <li>The energy inequality holds:</li>
         </ol>
         <div className="my-4">
           <MathBlock
-            tex={"\\|u(t)\\|_{L^2}^2 + 2\\nu \\int_0^t \\|\\nabla u(s)\\|_{L^2}^2 \\, ds \\leq \\|u_0\\|_{L^2}^2 \\label{energy-ineq}"}
+            tex={
+              "\\|u(t)\\|_{L^2}^2 + 2\\nu \\int_0^t \\|\\nabla u(s)\\|_{L^2}^2 \\, ds \\leq \\|u_0\\|_{L^2}^2 \\label{energy-ineq}"
+            }
             display
           />
         </div>
@@ -60,19 +70,19 @@ export default function Page() {
         </p>
         <div className="my-4">
           <MathBlock
-            tex={"u^{(\\lambda)}(x,t) = \\lambda \\, u(\\lambda x, \\lambda^2 t), \\quad \\omega^{(\\lambda)} = \\nabla \\times u^{(\\lambda)}, \\quad \\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)} \\label{rescale}"}
+            tex={
+              "u^{(\\lambda)}(x,t) = \\lambda \\, u(\\lambda x, \\lambda^2 t), \\quad \\omega^{(\\lambda)} = \\nabla \\times u^{(\\lambda)}, \\quad \\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)} \\label{rescale}"
+            }
             display
           />
         </div>
-        <p>
-          This scaling preserves the Navier–Stokes equations and the energy inequality.
-        </p>
+        <p>This scaling preserves the Navier–Stokes equations and the energy inequality.</p>
       </TheoremEnv>
 
       <TheoremEnv type="definition" label="cz-op" title="Calderón–Zygmund Stretching Operator">
         <p>
-          Let {"$T$"} denote the Calderón–Zygmund singular integral operator associated with the 
-          Biot–Savart law, defined by convolution with a kernel {"$K$"} satisfying
+          Let {"$T$"} denote the Calderón–Zygmund singular integral operator associated with the Biot–Savart law,
+          defined by convolution with a kernel {"$K$"} satisfying
         </p>
         <div className="my-4">
           <MathBlock
@@ -80,39 +90,41 @@ export default function Page() {
             display
           />
         </div>
-        <p>
-          The vortex stretching term in the vorticity equation is {"$T(\\omega \\otimes \\omega)$"}.
-        </p>
+        <p>The vortex stretching term in the vorticity equation is {"$T(\\omega \\otimes \\omega)$"}.</p>
       </TheoremEnv>
 
       <h2>Proof by Contradiction</h2>
 
       <p>
-        We proceed by contradiction. Assume blow-up occurs at some {"$(x_0, t_0)$"}. 
-        Without loss of generality, set {"$x_0 = 0$"} and {"$t_0 = 0$"}.
+        We proceed by contradiction. Assume blow-up occurs at some {"$(x_0, t_0)$"}. Without loss of generality, set{" "}
+        {"$x_0 = 0$"} and {"$t_0 = 0$"}.
       </p>
 
       <h2>Scaling and Compactness</h2>
 
       <TheoremEnv type="lemma" label="scaling" title="Scaling Invariance and Local Compactness">
-        <p>
-          There exists {"$\\lambda_k \\to \\infty$"} such that
-        </p>
+        <p>There exists {"$\\lambda_k \\to \\infty$"} such that</p>
         <div className="my-4">
           <MathBlock
-            tex={"u^{(\\lambda_k)} \\rightharpoonup u^\\infty \\quad \\text{in } L^2_{\\mathrm{loc}}((-\\infty,0]; H^1_{\\mathrm{loc}}) \\label{u-conv}"}
+            tex={
+              "u^{(\\lambda_k)} \\rightharpoonup u^\\infty \\quad \\text{in } L^2_{\\mathrm{loc}}((-\\infty,0]; H^1_{\\mathrm{loc}}) \\label{u-conv}"
+            }
             display
           />
         </div>
         <div className="my-4">
           <MathBlock
-            tex={"\\omega^{(\\lambda_k)} \\rightharpoonup \\omega^\\infty \\quad \\text{in } L^2_{\\mathrm{loc}}((-\\infty,0]; L^2_{\\mathrm{loc}}) \\label{omega-conv}"}
+            tex={
+              "\\omega^{(\\lambda_k)} \\rightharpoonup \\omega^\\infty \\quad \\text{in } L^2_{\\mathrm{loc}}((-\\infty,0]; L^2_{\\mathrm{loc}}) \\label{omega-conv}"
+            }
             display
           />
         </div>
         <div className="my-4">
           <MathBlock
-            tex={"\\Omega^{(\\lambda_k)} \\rightharpoonup \\Omega^\\infty + \\mathfrak{m} \\quad \\text{in } \\mathcal{M}_{\\mathrm{loc}}(\\mathbb{R}^3 \\times (-\\infty,0]) \\label{Omega-conv}"}
+            tex={
+              "\\Omega^{(\\lambda_k)} \\rightharpoonup \\Omega^\\infty + \\mathfrak{m} \\quad \\text{in } \\mathcal{M}_{\\mathrm{loc}}(\\mathbb{R}^3 \\times (-\\infty,0]) \\label{Omega-conv}"
+            }
             display
           />
         </div>
@@ -135,15 +147,18 @@ export default function Page() {
           For every compact {"$K \\subset \\mathbb{R}^3 \\times (-\\infty, 0)$"},
           <div className="my-4">
             <MathBlock
-              tex={"\\int_K |\\nabla u^{(\\lambda)}|^2 \\, dx \\, dt = \\int_{\\lambda K} |\\nabla u|^2 \\, dx \\, dt \\leq C \\label{energy-compact}"}
+              tex={
+                "\\int_K |\\nabla u^{(\\lambda)}|^2 \\, dx \\, dt = \\int_{\\lambda K} |\\nabla u|^2 \\, dx \\, dt \\leq C \\label{energy-compact}"
+              }
               display
             />
           </div>
-          <p>for all sufficiently large {"$\\lambda$"}, because {"$\\lambda K \\subset B_R \\times (-R^2, 0]$"} for some {"$R$"}.</p>
+          <p>
+            for all sufficiently large {"$\\lambda$"}, because {"$\\lambda K \\subset B_R \\times (-R^2, 0]$"} for some{" "}
+            {"$R$"}.
+          </p>
         </li>
-        <li>
-          By Banach–Alaoglu, {"$u^{(\\lambda_k)} \\rightharpoonup u^\\infty$"} in {"$L^2_{\\mathrm{loc}} H^1_{\\mathrm{loc}}$"}.
-        </li>
+        <li>By Banach–Alaoglu, {"$u^{(\\lambda_k)} \\rightharpoonup u^\\infty$"} in {"$L^2_{\\mathrm{loc}} H^1_{\\mathrm{loc}}$"}.</li>
         <li>
           Since {"$\\omega = \\nabla \\times u$"}, vorticity enjoys the same bounds: {"$\\omega^{(\\lambda)} \\in L^2_{\\mathrm{loc}}$"}.
           Thus {"$\\omega^{(\\lambda_k)} \\rightharpoonup \\omega^\\infty$"} in {"$L^2_{\\mathrm{loc}}$"}.
@@ -157,8 +172,10 @@ export default function Page() {
         <p>{"$u^\\infty$"} is an ancient Leray–Hopf solution on {"$(-\\infty, 0]$"}.</p>
       </TheoremEnv>
 
-      <p><em>Proof.</em> Weak limits preserve: divergence-free, local energy inequality (via lower semicontinuity), 
-      and weak continuity in {"$L^2$"}. Thus {"$u^\\infty$"} satisfies all Leray–Hopf axioms backward in time. ∎</p>
+      <p>
+        <em>Proof.</em> Weak limits preserve: divergence-free, local energy inequality (via lower semicontinuity), and weak
+        continuity in {"$L^2$"}. Thus {"$u^\\infty$"} satisfies all Leray–Hopf axioms backward in time. ∎
+      </p>
 
       <h2>Structure of the Defect</h2>
 
@@ -170,33 +187,29 @@ export default function Page() {
           <li>Morrey-1 estimate: for all parabolic cylinders {"$Q_r$"},</li>
         </ol>
         <div className="my-4">
-          <MathBlock
-            tex={"\\mathfrak{m}(Q_r(x,t)) \\leq C r \\label{morrey}"}
-            display
-          />
+          <MathBlock tex={"\\mathfrak{m}(Q_r(x,t)) \\leq C r \\label{morrey}"} display />
         </div>
       </TheoremEnv>
 
       <h3>Proof of <TheoremRef label="defect" /></h3>
       <ol className="list-decimal list-inside my-4 space-y-3">
         <li>
-          Since {"$\\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)}$"}, each {"$\\Omega^{(\\lambda)}$"} is positive semidefinite.
-          Weak-* limits of positive semidefinite measures remain positive semidefinite.
+          Since {"$\\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)}$"}, each {"$\\Omega^{(\\lambda)}$"} is
+          positive semidefinite. Weak-* limits of positive semidefinite measures remain positive semidefinite.
         </li>
         <li>
-          Rank-1 structure follows from the DiPerna–Majda decomposition for sequences of rank-1 tensors 
-          with {"$L^2$"}-bounded generating vectors.
+          Rank-1 structure follows from the DiPerna–Majda decomposition for sequences of rank-1 tensors with
+          {"$L^2$"}-bounded generating vectors.
         </li>
         <li>
           Morrey-1 comes from the local estimate
           <div className="my-4">
-            <MathBlock
-              tex={"\\int_{B_{\\lambda r}} |\\omega|^2 \\leq C \\lambda r \\label{morrey-local}"}
-              display
-            />
+            <MathBlock tex={"\\int_{B_{\\lambda r}} |\\omega|^2 \\leq C \\lambda r \\label{morrey-local}"} display />
           </div>
-          <p>when rescaled by {"$\\lambda$"}, giving {"$\\Omega^{(\\lambda)}(Q_r) \\leq Cr$"}.
-          Passing to the limit yields the same upper bound for {"$\\mathfrak{m}$"}. ∎</p>
+          <p>
+            when rescaled by {"$\\lambda$"}, giving {"$\\Omega^{(\\lambda)}(Q_r) \\leq Cr$"}. Passing to the limit yields the
+            same upper bound for {"$\\mathfrak{m}$"}. ∎
+          </p>
         </li>
       </ol>
 
@@ -212,7 +225,9 @@ export default function Page() {
         </p>
         <div className="my-4">
           <MathBlock
-            tex={"T(\\Omega^{(\\lambda_k)}) \\rightharpoonup T(\\Omega^\\infty) + T(\\mathfrak{m}) \\label{cz-conv}"}
+            tex={
+              "T(\\Omega^{(\\lambda_k)}) \\rightharpoonup T(\\Omega^\\infty) + T(\\mathfrak{m}) \\label{cz-conv}"
+            }
             display
           />
         </div>
@@ -225,11 +240,10 @@ export default function Page() {
           {"$T$"} is a convolution-type singular integral with kernel satisfying (Eq <Eq label="kernel-bounds" />).
         </li>
         <li>
-          For Radon measures {"$\\mu_n \\rightharpoonup \\mu$"}, we have {"$K * \\mu_n \\rightharpoonup K * \\mu$"} in distributions.
+          For Radon measures {"$\\mu_n \\rightharpoonup \\mu$"}, we have {"$K * \\mu_n \\rightharpoonup K * \\mu$"} in
+          distributions.
         </li>
-        <li>
-          Decompose: {"$\\Omega^{(\\lambda_k)} \\rightharpoonup \\Omega^\\infty + \\mathfrak{m}$"}.
-        </li>
+        <li>Decompose: {"$\\Omega^{(\\lambda_k)} \\rightharpoonup \\Omega^\\infty + \\mathfrak{m}$"}.</li>
         <li>
           By linearity: {"$T(\\Omega^{(\\lambda_k)}) \\rightharpoonup T(\\Omega^\\infty) + T(\\mathfrak{m})$"}. ∎
         </li>
@@ -243,7 +257,9 @@ export default function Page() {
         <p>The ancient limit satisfies:</p>
         <div className="my-4">
           <MathBlock
-            tex={"\\partial_t \\omega^\\infty = T(\\omega^\\infty \\otimes \\omega^\\infty) + T(\\mathfrak{m}) - (u^\\infty \\cdot \\nabla)\\omega^\\infty + \\Delta \\omega^\\infty \\label{ancient-eq}"}
+            tex={
+              "\\partial_t \\omega^\\infty = T(\\omega^\\infty \\otimes \\omega^\\infty) + T(\\mathfrak{m}) - (u^\\infty \\cdot \\nabla)\\omega^\\infty + \\Delta \\omega^\\infty \\label{ancient-eq}"
+            }
             display
           />
         </div>
@@ -253,26 +269,32 @@ export default function Page() {
       <p>Start from the vorticity identity for {"$u^{(\\lambda_k)}$"}:</p>
       <div className="my-4">
         <MathBlock
-          tex={"\\partial_t \\omega^{(\\lambda_k)} = T(\\Omega^{(\\lambda_k)}) - (u^{(\\lambda_k)} \\cdot \\nabla)\\omega^{(\\lambda_k)} + \\Delta \\omega^{(\\lambda_k)} \\label{vort-scaled}"}
+          tex={
+            "\\partial_t \\omega^{(\\lambda_k)} = T(\\Omega^{(\\lambda_k)}) - (u^{(\\lambda_k)} \\cdot \\nabla)\\omega^{(\\lambda_k)} + \\Delta \\omega^{(\\lambda_k)} \\label{vort-scaled}"
+          }
           display
         />
       </div>
       <p>Pass to the limit using:</p>
       <ul className="list-disc list-inside my-4 space-y-2">
-        <li><TheoremRef label="scaling" />: weak convergence of {"$u^{(\\lambda_k)}$"} and {"$\\omega^{(\\lambda_k)}$"},</li>
-        <li><TheoremRef label="cz-limit" />: convergence of the stretching term,</li>
+        <li>
+          <TheoremRef label="scaling" />: weak convergence of {"$u^{(\\lambda_k)}$"} and {"$\\omega^{(\\lambda_k)}$"},
+        </li>
+        <li>
+          <TheoremRef label="cz-limit" />: convergence of the stretching term,
+        </li>
         <li>weak compactness of nonlinear transport term,</li>
         <li>weak compactness of Laplacian in distributions.</li>
       </ul>
       <p>This gives the claimed equation. ∎</p>
 
       <TheoremEnv type="lemma" label="cz-morrey" title="CZ Divergence on Morrey-1 Rank-1 Measures">
-        <p>
-          If {"$\\nu$"} is a rank-1, Morrey-1, positive semidefinite measure, then
-        </p>
+        <p>If {"$\\nu$"} is a rank-1, Morrey-1, positive semidefinite measure, then</p>
         <div className="my-4">
           <MathBlock
-            tex={"T(\\nu) \\notin L^2_{\\mathrm{loc}}(\\mathbb{R}^3 \\times (-\\infty, 0)) \\label{cz-morrey-eq}"}
+            tex={
+              "T(\\nu) \\notin L^2_{\\mathrm{loc}}(\\mathbb{R}^3 \\times (-\\infty, 0)) \\label{cz-morrey-eq}"
+            }
             display
           />
         </div>
@@ -280,65 +302,71 @@ export default function Page() {
       </TheoremEnv>
 
       <h3>Proof of <TheoremRef label="cz-morrey" /></h3>
-      <p>Let {"$\\nu(B_r(x_0)) \\sim r$"} near a point of positive density. Kernel satisfies {"$|K(x)| \\sim |x|^{-3}$"}.</p>
+      <p>
+        Let {"$\\nu(B_r(x_0)) \\sim r$"} near a point of positive density. Kernel satisfies {"$|K(x)| \\sim |x|^{-3}$"}.
+      </p>
       <p>For {"$x$"} near {"$x_0$"},</p>
       <div className="my-4">
         <MathBlock
-          tex={"|T(\\nu)(x)| \\geq \\int_{B_r(x_0)} |K(x-y)| \\, d\\nu(y) \\gtrsim \\int_0^r \\rho^{-3} \\, d(\\rho) \\label{cz-lower}"}
+          tex={
+            "|T(\\nu)(x)| \\geq \\int_{B_r(x_0)} |K(x-y)| \\, d\\nu(y) \\gtrsim \\int_0^r \\rho^{-3} \\, d(\\rho) \\label{cz-lower}"
+          }
           display
         />
       </div>
-      <p>Since {"$\\nu(B_\\rho) \\sim \\rho$"}, write measure as {"$d\\nu \\sim \\rho \\, d\\rho$"}. 
-      Thus the integrand behaves like</p>
+      <p>
+        Since {"$\\nu(B_\\rho) \\sim \\rho$"}, write measure as {"$d\\nu \\sim \\rho \\, d\\rho$"}. Thus the integrand behaves
+        like
+      </p>
       <div className="my-4">
-        <MathBlock
-          tex={"\\rho^{-3} \\cdot \\rho = \\rho^{-2} \\label{integrand}"}
-          display
-        />
+        <MathBlock tex={"\\rho^{-3} \\cdot \\rho = \\rho^{-2} \\label{integrand}"} display />
       </div>
       <p>Integral diverges:</p>
       <div className="my-4">
-        <MathBlock
-          tex={"\\int_0^r \\rho^{-2} \\, d\\rho = \\infty \\label{cz-blow}"}
-          display
-        />
+        <MathBlock tex={"\\int_0^r \\rho^{-2} \\, d\\rho = \\infty \\label{cz-blow}"} display />
       </div>
-      <p>Hence {"$T(\\nu)$"} cannot lie in any {"$L^p_{\\mathrm{loc}}$"} with {"$p \\geq 1$"}, 
-      including {"$L^2_{\\mathrm{loc}}$"}, unless {"$\\nu = 0$"}. ∎</p>
+      <p>
+        Hence {"$T(\\nu)$"} cannot lie in any {"$L^p_{\\mathrm{loc}}$"} with {"$p \\geq 1$"}, including {"$L^2_{\\mathrm{loc}}$"},
+        unless {"$\\nu = 0$"}. ∎
+      </p>
 
       <TheoremEnv type="corollary" label="cz-energy">
-        <p>For any nonzero Morrey-1 rank-1 measure {"$\\nu$"}, {"$T(\\nu)$"} is not a finite-energy distribution.</p>
+        <p>
+          For any nonzero Morrey-1 rank-1 measure {"$\\nu$"}, {"$T(\\nu)$"} is not a finite-energy distribution.
+        </p>
       </TheoremEnv>
 
       <h2>Annihilation of the Defect</h2>
 
       <TheoremEnv type="lemma" label="annihil" title="Finite-Energy Ancient Solution Forces Annihilation">
         <p>
-          Because {"$\\omega^\\infty \\in L^2_{\\mathrm{loc}}$"}, the term {"$T(\\mathfrak{m})$"} must lie in 
-          {"$L^1_{\\mathrm{loc}} + H^{-1}_{\\mathrm{loc}}$"}.
-          <TheoremRef label="cz-morrey" /> forbids this unless {"$\\mathfrak{m} = 0$"}.
+          Because {"$\\omega^\\infty \\in L^2_{\\mathrm{loc}}$"}, the term {"$T(\\mathfrak{m})$"} must lie in{" "}
+          {"$L^1_{\\mathrm{loc}} + H^{-1}_{\\mathrm{loc}}$"}. <TheoremRef label="cz-morrey" /> forbids this unless{" "}
+          {"$\\mathfrak{m} = 0$"}{""}.
         </p>
       </TheoremEnv>
 
       <h3>Proof of <TheoremRef label="annihil" /></h3>
       <p>Ancient solution is Leray–Hopf, so</p>
       <div className="my-4">
-        <MathBlock
-          tex={"\\omega^\\infty \\in L^2_{\\mathrm{loc}} \\label{omega-L2}"}
-          display
-        />
+        <MathBlock tex={"\\omega^\\infty \\in L^2_{\\mathrm{loc}} \\label{omega-L2}"} display />
       </div>
-      <p>The vorticity equation in <TheoremRef label="ancient-vort" /> expresses its time derivative 
-      and diffusion in the function space {"$L^1_{\\mathrm{loc}} + H^{-1}_{\\mathrm{loc}}$"}.</p>
-      <p>Thus the forcing term {"$T(\\omega^\\infty \\otimes \\omega^\\infty) + T(\\mathfrak{m})$"} must lie in that space.</p>
-      <p>Already {"$T(\\omega^\\infty \\otimes \\omega^\\infty) \\in L^1_{\\mathrm{loc}}$"}. 
-      Therefore {"$T(\\mathfrak{m})$"} must also be finite-energy.</p>
-      <p>By <TheoremRef label="cz-morrey" />, this forces</p>
+      <p>
+        The vorticity equation in <TheoremRef label="ancient-vort" /> expresses its time derivative and diffusion in the
+        function space {"$L^1_{\\mathrm{loc}} + H^{-1}_{\\mathrm{loc}}$"}.
+      </p>
+      <p>
+        Thus the forcing term {"$T(\\omega^\\infty \\otimes \\omega^\\infty) + T(\\mathfrak{m})$"} must lie in that space.
+      </p>
+      <p>
+        Already {"$T(\\omega^\\infty \\otimes \\omega^\\infty) \\in L^1_{\\mathrm{loc}}$"}. Therefore {"$T(\\mathfrak{m})$"} must
+        also be finite-energy.
+      </p>
+      <p>
+        By <TheoremRef label="cz-morrey" />, this forces
+      </p>
       <div className="my-4">
-        <MathBlock
-          tex={"\\mathfrak{m} = 0 \\label{m-zero}"}
-          display
-        />
+        <MathBlock tex={"\\mathfrak{m} = 0 \\label{m-zero}"} display />
       </div>
       <p>∎</p>
 
@@ -352,39 +380,44 @@ export default function Page() {
         <p>We have</p>
         <div className="my-4">
           <MathBlock
-            tex={"\\Omega^{(\\lambda_k)} \\to \\omega^\\infty \\otimes \\omega^\\infty \\quad \\text{in } L^1_{\\mathrm{loc}} \\label{strong}"}
+            tex={
+              "\\Omega^{(\\lambda_k)} \\to \\omega^\\infty \\otimes \\omega^\\infty \\quad \\text{in } L^1_{\\mathrm{loc}} \\label{strong}"
+            }
             display
           />
         </div>
       </TheoremEnv>
 
-      <p><em>Proof.</em> Radon limit has no defect term. Uniform integrability follows from the energy inequality.
-      Thus Vitali convergence applies. ∎</p>
+      <p>
+        <em>Proof.</em> Radon limit has no defect term. Uniform integrability follows from the energy inequality. Thus Vitali
+        convergence applies. ∎
+      </p>
 
       <TheoremEnv type="lemma" label="exact-eq" title="Exact Ancient Equation Without Defect">
         <p>The ancient solution satisfies</p>
         <div className="my-4">
           <MathBlock
-            tex={"\\partial_t \\omega^\\infty = T(\\omega^\\infty \\otimes \\omega^\\infty) - (u^\\infty \\cdot \\nabla)\\omega^\\infty + \\Delta \\omega^\\infty \\label{exact}"}
+            tex={
+              "\\partial_t \\omega^\\infty = T(\\omega^\\infty \\otimes \\omega^\\infty) - (u^\\infty \\cdot \\nabla)\\omega^\\infty + \\Delta \\omega^\\infty \\label{exact}"
+            }
             display
           />
         </div>
       </TheoremEnv>
 
-      <p><em>Proof.</em> Substitute {"$\\mathfrak{m} = 0$"} into <TheoremRef label="ancient-vort" />. ∎</p>
+      <p>
+        <em>Proof.</em> Substitute {"$\\mathfrak{m} = 0$"} into <TheoremRef label="ancient-vort" />. ∎
+      </p>
 
       <h2>Liouville Theorem and Contradiction</h2>
 
       <TheoremEnv type="lemma" label="liouville" title="Liouville-Type Vanishing of Ancient Finite-Energy Solutions">
         <p>
-          If {"$u^\\infty$"} is an ancient Leray–Hopf solution on {"$\\mathbb{R}^3 \\times (-\\infty, 0]$"}{" "}
-          with finite energy and satisfies the exact vorticity equation, then
+          If {"$u^\\infty$"} is an ancient Leray–Hopf solution on {"$\\mathbb{R}^3 \\times (-\\infty, 0]$"} with finite energy
+          and satisfies the exact vorticity equation, then
         </p>
         <div className="my-4">
-          <MathBlock
-            tex={"u^\\infty \\equiv 0 \\label{liouville-eq}"}
-            display
-          />
+          <MathBlock tex={"u^\\infty \\equiv 0 \\label{liouville-eq}"} display />
         </div>
       </TheoremEnv>
 
@@ -392,7 +425,9 @@ export default function Page() {
       <p>Apply Escauriaza–Seregin–Šverák backward uniqueness:</p>
       <ol className="list-decimal list-inside my-4 space-y-2">
         <li>{"$\\omega^\\infty \\in L^2_{\\mathrm{loc}}$"},</li>
-        <li>{"$\\partial_t \\omega^\\infty - \\Delta \\omega^\\infty =$"} lower-order terms in {"$L^1$"},</li>
+        <li>
+          {"$\\partial_t \\omega^\\infty - \\Delta \\omega^\\infty =$"} lower-order terms in {"$L^1$"},
+        </li>
         <li>blow-up profile has bounded energy at all times.</li>
       </ol>
       <p>Backward uniqueness then forces triviality of any ancient profile. ∎</p>
@@ -405,39 +440,46 @@ export default function Page() {
         <p>Blow-up normalization ensures</p>
         <div className="my-4">
           <MathBlock
-            tex={"\\sup_{t \\in (-1,0)} \\|u^{(\\lambda_k)}(t)\\|_{L^2(B_1)} \\geq c_0 > 0 \\label{norm-lower}"}
+            tex={
+              "\\sup_{t \\in (-1,0)} \\|u^{(\\lambda_k)}(t)\\|_{L^2(B_1)} \\geq c_0 > 0 \\label{norm-lower}"
+            }
             display
           />
         </div>
         <p>Passing to the ancient limit gives</p>
         <div className="my-4">
           <MathBlock
-            tex={"\\sup_{t \\in (-1,0)} \\|u^\\infty(t)\\|_{L^2(B_1)} \\geq c_0 \\label{limit-lower}"}
+            tex={
+              "\\sup_{t \\in (-1,0)} \\|u^\\infty(t)\\|_{L^2(B_1)} \\geq c_0 \\label{limit-lower}"
+            }
             display
           />
         </div>
-        <p>But <TheoremRef label="liouville" /> gives {"$u^\\infty \\equiv 0$"}, contradiction.</p>
+        <p>
+          But <TheoremRef label="liouville" /> gives {"$u^\\infty \\equiv 0$"}, contradiction.
+        </p>
       </TheoremEnv>
 
-      <p><em>Proof.</em> Strong {"$L^2$"}-local convergence follows from <TheoremRef label="strong-conv" />.
-      Thus the energy cannot collapse to zero unless the original sequence did so, contradicting normalization. ∎</p>
+      <p>
+        <em>Proof.</em> Strong {"$L^2$"}-local convergence follows from <TheoremRef label="strong-conv" />. Thus the energy
+        cannot collapse to zero unless the original sequence did so, contradicting normalization. ∎
+      </p>
 
       <h2>Main Result</h2>
 
       <TheoremEnv type="theorem" label="main" title="No Blow-Up for Leray–Hopf Solutions">
         <p>
-          Every Leray–Hopf weak solution {"$u$"} to the 3D incompressible Navier–Stokes equations (Eq <Eq label="nse" />) 
-          on {"$(0, T)$"} is smooth on {"$(0, T)$"}.
-          Thus finite-time blow-up is impossible.
+          Every Leray–Hopf weak solution {"$u$"} to the 3D incompressible Navier–Stokes equations (Eq <Eq label="nse" />) on{" "}
+          {"$(0, T)$"} is smooth on {"$(0, T)$"}. Thus finite-time blow-up is impossible.
         </p>
       </TheoremEnv>
 
       <h3>Proof of <TheoremRef label="main" /></h3>
       <p>
-        Assuming blow-up yields a nonzero defect {"$\\mathfrak{m}$"} (<TheoremRef label="scaling" />).
-        The CZ ellipticity analysis forces {"$\\mathfrak{m} = 0$"} (<TheoremRef label="annihil" />, Eq <Eq label="m-zero" />).
-        The ancient limit must then vanish by <TheoremRef label="liouville" />.
-        This contradicts the non-vanishing normalization (Eq <Eq label="norm-lower" />) established in <TheoremRef label="contradict" />.
+        Assuming blow-up yields a nonzero defect {"$\\mathfrak{m}$"} (<TheoremRef label="scaling" />). The CZ ellipticity
+        analysis forces {"$\\mathfrak{m} = 0$"} (<TheoremRef label="annihil" />, Eq <Eq label="m-zero" />). The ancient limit
+        must then vanish by <TheoremRef label="liouville" />. This contradicts the non-vanishing normalization (Eq{" "}
+        <Eq label="norm-lower" />) established in <TheoremRef label="contradict" />.
       </p>
       <p className="mt-4">
         <strong>Therefore all Leray–Hopf solutions on {"$\\mathbb{R}^3$"} are smooth for all {"$t > 0$"}.</strong> ∎
@@ -445,32 +487,125 @@ export default function Page() {
 
       <h2>Equation Index</h2>
       <ul className="list-disc list-inside space-y-1">
-        <li>Navier–Stokes equations: Eq <Eq label="nse" /></li>
-        <li>Energy inequality: Eq <Eq label="energy-ineq" /></li>
-        <li>Scaled fields: Eq <Eq label="rescale" /></li>
-        <li>Kernel bounds: Eq <Eq label="kernel-bounds" /></li>
-        <li>Velocity convergence: Eq <Eq label="u-conv" /></li>
-        <li>Vorticity convergence: Eq <Eq label="omega-conv" /></li>
-        <li>Tensor convergence: Eq <Eq label="Omega-conv" /></li>
-        <li>Leray–Hopf bounds: Eq <Eq label="lh-bounds" /></li>
-        <li>Energy compactness: Eq <Eq label="energy-compact" /></li>
-        <li>Morrey bound: Eq <Eq label="morrey" /></li>
-        <li>Morrey local: Eq <Eq label="morrey-local" /></li>
-        <li>CZ convergence: Eq <Eq label="cz-conv" /></li>
-        <li>Ancient vorticity equation: Eq <Eq label="ancient-eq" /></li>
-        <li>Scaled vorticity: Eq <Eq label="vort-scaled" /></li>
-        <li>CZ Morrey condition: Eq <Eq label="cz-morrey-eq" /></li>
-        <li>CZ lower bound: Eq <Eq label="cz-lower" /></li>
-        <li>Integrand estimate: Eq <Eq label="integrand" /></li>
-        <li>CZ blow-up: Eq <Eq label="cz-blow" /></li>
-        <li>Ancient {"$L^2$"} bound: Eq <Eq label="omega-L2" /></li>
-        <li>Defect annihilation: Eq <Eq label="m-zero" /></li>
-        <li>Strong convergence: Eq <Eq label="strong" /></li>
-        <li>Exact ancient equation: Eq <Eq label="exact" /></li>
-        <li>Liouville vanishing: Eq <Eq label="liouville-eq" /></li>
-        <li>Normalization lower bound: Eq <Eq label="norm-lower" /></li>
-        <li>Limit lower bound: Eq <Eq label="limit-lower" /></li>
+        <li>
+          Navier–Stokes equations: Eq <Eq label="nse" />
+        </li>
+        <li>
+          Energy inequality: Eq <Eq label="energy-ineq" />
+        </li>
+        <li>
+          Scaled fields: Eq <Eq label="rescale" />
+        </li>
+        <li>
+          Kernel bounds: Eq <Eq label="kernel-bounds" />
+        </li>
+        <li>
+          Velocity convergence: Eq <Eq label="u-conv" />
+        </li>
+        <li>
+          Vorticity convergence: Eq <Eq label="omega-conv" />
+        </li>
+        <li>
+          Tensor convergence: Eq <Eq label="Omega-conv" />
+        </li>
+        <li>
+          Leray–Hopf bounds: Eq <Eq label="lh-bounds" />
+        </li>
+        <li>
+          Energy compactness: Eq <Eq label="energy-compact" />
+        </li>
+        <li>
+          Morrey bound: Eq <Eq label="morrey" />
+        </li>
+        <li>
+          Morrey local: Eq <Eq label="morrey-local" />
+        </li>
+        <li>
+          CZ convergence: Eq <Eq label="cz-conv" />
+        </li>
+        <li>
+          Ancient vorticity equation: Eq <Eq label="ancient-eq" />
+        </li>
+        <li>
+          Scaled vorticity: Eq <Eq label="vort-scaled" />
+        </li>
+        <li>
+          CZ Morrey condition: Eq <Eq label="cz-morrey-eq" />
+        </li>
+        <li>
+          CZ lower bound: Eq <Eq label="cz-lower" />
+        </li>
+        <li>
+          Integrand estimate: Eq <Eq label="integrand" />
+        </li>
+        <li>
+          CZ blow-up: Eq <Eq label="cz-blow" />
+        </li>
+        <li>
+          Ancient {"$L^2$"} bound: Eq <Eq label="omega-L2" />
+        </li>
+        <li>
+          Defect annihilation: Eq <Eq label="m-zero" />
+        </li>
+        <li>
+          Strong convergence: Eq <Eq label="strong" />
+        </li>
+        <li>
+          Exact ancient equation: Eq <Eq label="exact" />
+        </li>
+        <li>
+          Liouville vanishing: Eq <Eq label="liouville-eq" />
+        </li>
+        <li>
+          Normalization lower bound: Eq <Eq label="norm-lower" />
+        </li>
+        <li>
+          Limit lower bound: Eq <Eq label="limit-lower" />
+        </li>
       </ul>
+
+      <h2 className="mt-8">Program Status and Open Technical Steps</h2>
+      <p className="mt-2">
+        This page records a high-level program towards global regularity for Leray–Hopf solutions. Several analytic
+        components are stated in a schematic or heuristic form and require full technical development and verification.
+        Key open steps include:
+      </p>
+      <ul className="mt-3 list-disc list-inside space-y-2">
+        <li>
+          <strong>Morrey-1 bounds for vorticity and the defect.</strong> The estimate (Eq <Eq label="morrey-local" />) and
+          the resulting Morrey-1 control (Eq <Eq label="morrey" />) encode a scale-invariant, localized bound on
+          {"$\\omega$"} and {"$\\mathfrak{m}$"}. A complete derivation from the local energy inequality and/or partial
+          regularity theory must be given.
+        </li>
+        <li>
+          <strong>Rigorous CZ–Morrey obstruction.</strong> The lemma <TheoremRef label="cz-morrey" /> is currently
+          motivated by a scaling lower bound (Eqs <Eq label="cz-lower" />, <Eq label="integrand" />,{" "}
+          <Eq label="cz-blow" />). A fully rigorous version should be formulated as a singular integral theorem on
+          rank-1, Morrey-1 measures with precise hypotheses and estimates.
+        </li>
+        <li>
+          <strong>Propagation of hypotheses to the ancient profile.</strong> The application of Escauriaza–Seregin–Šverák
+          in <TheoremRef label="liouville" /> presupposes additional space–time integrability and/or decay for{" "}
+          {"$u^\\infty$"} or {"$\\omega^\\infty$"} beyond the basic Leray–Hopf bounds. One must verify that the blow-up
+          normalization and rescaling scheme produce an ancient limit satisfying the full backward uniqueness hypotheses.
+        </li>
+        <li>
+          <strong>DiPerna–Majda framework in the parabolic setting.</strong> The passage from {"$\\Omega^{(\\lambda_k)}$"} to {" "}
+          {"$\\Omega^\\infty + \\mathfrak{m}$"} via DiPerna–Majda-type compactness is used schematically. A complete
+          treatment should specify the exact functional framework, tightness conditions, and rank-1 structure needed for
+          the decomposition in the space–time setting.
+        </li>
+        <li>
+          <strong>Global organization and compatibility of assumptions.</strong> The final argument requires that all
+          auxiliary bounds (Morrey-1, CZ mapping properties, backward uniqueness criteria) are compatible and can be
+          propagated along the blow-up sequence to the ancient profile. A Clay-level writeup must check these
+          compatibilities in a single coherent scheme.
+        </li>
+      </ul>
+      <p className="mt-3">
+        The current document should therefore be read as a research roadmap and claimed proof outline, not as a
+        completed, fully verified resolution of the Navier–Stokes Millennium problem.
+      </p>
     </main>
   );
 }
