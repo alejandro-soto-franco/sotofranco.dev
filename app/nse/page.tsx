@@ -9,7 +9,7 @@ export default function Page() {
       <h1>Global Regularity Program for Leray–Hopf Solutions in {"$\\mathbb{R}^3$"}</h1>
 
       <section className="mb-8">
-        <h2>Problem Statement</h2>
+        <h2>Problem Statement and Disclaimer</h2>
         <p>
           Consider the three-dimensional incompressible Navier–Stokes equations
         </p>
@@ -27,8 +27,10 @@ export default function Page() {
           remain smooth for all positive times, or whether finite-time blow-up can occur.
         </p>
         <p className="mt-4">
-          <strong>We prove <TheoremRef label="main" />:</strong> Every Leray–Hopf weak solution is smooth 
-          on {"$(0, T)$"}, establishing that finite-time blow-up is impossible.
+          <strong>We aim to prove <TheoremRef label="main" />:</strong> Every Leray–Hopf weak solution is smooth 
+          on {"$(0, T)$"}, establishing that finite-time blow-up is impossible. This program is evolving and has
+          not been peer-reviewed. An ArXiv submission is currently pending. This is a high-level outline for which
+          no correctness is asserted beyond the author's current understanding.
         </p>
       </section>
 
