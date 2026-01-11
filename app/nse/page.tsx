@@ -6,7 +6,7 @@ import TheoremRef from "../components/TheoremRef";
 export default function Page() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-10">
-      <h1>Global Regularity for Leray–Hopf Solutions in {"$\\mathbb{R}^3$"}</h1>
+      <h1>Global Regularity Program for Leray–Hopf Solutions in {"$\\mathbb{R}^3$"}</h1>
 
       <section className="mb-8">
         <h2>Problem Statement</h2>
