@@ -132,13 +132,13 @@ export default function Page() {
           <em> parabolic scaling </em>
           of velocity, vorticity, and dyadic curvature:
         </p>
-
+        <div className="my-4">
         <MathBlock
           tex={
             "u^{(\\lambda)}(x,t) = \\lambda \\, u(\\lambda x, \\lambda^2 t), \\qquad \\omega^{(\\lambda)} = \\nabla \\times u^{(\\lambda)}, \\qquad \\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)}."
           }
           display
-        />
+        /></div>
 
         <p className="my-4">
           This scaling preserves the form of the Navier–Stokes equations and the Leray–Hopf energy inequality.
