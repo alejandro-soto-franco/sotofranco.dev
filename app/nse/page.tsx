@@ -40,58 +40,224 @@ export default function Page() {
 
       <TheoremEnv type="definition" label="leray-hopf" title="Leray–Hopf Weak Solution">
         <p>
-          A vector field {"$u: \\mathbb{R}^3 \\times (0, T) \\to \\mathbb{R}^3$"} is a <em>Leray–Hopf weak solution</em> if:
+          A vector field {"$u: \\mathbb{R}^3 \\times (0, T) \\to \\mathbb{R}^3$"} is a
+          <em> Leray–Hopf weak solution </em>
+          of the incompressible Navier–Stokes equations if all of the following conditions hold.
         </p>
-        <ol className="list-decimal list-inside my-4 space-y-2">
+
+        <ol className="list-decimal list-inside my-4 space-y-4">
+
           <li>
+            <strong>Energy–class regularity. </strong>
             {
-              "$u \\in L^\\infty(0, T; L^2(\\mathbb{R}^3)) \\cap L^2(0, T; \\dot{H}^1(\\mathbb{R}^3))$"
-            }
+              "$u \\in L^\\infty(0,T; L^2(\\mathbb{R}^3)) \\cap L^2(0,T; \\dot H^1(\\mathbb{R}^3))$"
+            }{" "}
+            and the time derivative satisfies the Lions–Magenes condition{" "}
+            {
+              "$\\partial_t u \\in L^{4/3}(0,T; \\dot H^{-1}(\\mathbb{R}^3))$"
+            }{" "}
+            in the distributional sense.
+            <p className="mt-2">
+              Equivalently:
+            </p>
+            <ul className="list-disc list-inside ml-6 space-y-1">
+              <li>{"$t \\mapsto \\|u(t)\\|_{L^2}$"} is weakly-* measurable and uniformly bounded;</li>
+              <li>{"$\\nabla u \\in L^2_{t,x}$"} with {"$\\displaystyle \\int_0^T \\|\\nabla u(t)\\|_{L^2}^2 dt < \\infty$"}.</li>
+            </ul>
           </li>
-          <li>{"$\\nabla \\cdot u = 0$"} in the sense of distributions,</li>
+
           <li>
-            {"$u$"} satisfies (Eq <Eq label="nse" />) weakly against divergence-free test functions,
-          </li>
-          <li>The energy inequality holds:</li>
-        </ol>
-        <div className="my-4">
+            <strong>Solenoidal constraint. </strong>
+            {
+              "$\\nabla \\cdot u = 0$"
+            }{" "}
+            in the sense of distributions: for every{" "}
+            {
+              "$\\phi \\in C_c^\\infty(\\mathbb{R}^3 \\times (0,T))$"
+            },
+            <br />
+
+            <div className="my-4">
           <MathBlock
             tex={
-              "\\|u(t)\\|_{L^2}^2 + 2\\nu \\int_0^t \\|\\nabla u(s)\\|_{L^2}^2 \\, ds \\leq \\|u_0\\|_{L^2}^2 \\label{energy-ineq}"
+              "\\displaystyle \\int_0^T \\! \\int_{\\mathbb{R}^3} u \\cdot \\nabla \\phi \\, dx \\, dt = 0."
             }
             display
           />
         </div>
+          </li>
+
+          <li>
+            <strong>Weak formulation. </strong>
+            For all divergence-free test functions{" "}
+            {
+              "$\\varphi \\in C_c^\\infty(\\mathbb{R}^3 \\times (0,T); \\mathbb{R}^3)$"
+            }{" "}
+            with {"$\\nabla \\,\\cdot \\, \\varphi = 0$"}:
+            <MathBlock
+              tex={
+                "\\int_0^T \\! \\int_{\\mathbb{R}^3} \\Big( -u \\cdot \\partial_t \\varphi - (u \\otimes u) : \\nabla \\varphi + 2\\nu \\, \\nabla u : \\nabla \\varphi \\Big) \\, dx \\, dt = \\int_{\\mathbb{R}^3} u_0(x) \\cdot \\varphi(x,0) \\, dx."
+              }
+              display
+            />
+            <p>
+              The pressure {"$p$"} is recovered (up to time-dependent harmonic polynomials) through the Leray projector and satisfies
+              {" "}{"$p \\in L^{3/2}_{\\mathrm{loc}}$"}.
+            </p>
+          </li>
+
+          <li>
+            <strong>Energy inequality. </strong>
+            For almost every {"$t \\in (0,T)$"}:
+            <MathBlock
+              tex={
+                "\\|u(t)\\|_{L^2}^2 + 2\\nu \\int_0^t \\|\\nabla u(s)\\|_{L^2}^2 \\, ds \\leq \\|u_0\\|_{L^2}^2."
+              }
+              display
+            />
+          </li>
+        </ol>
       </TheoremEnv>
+
 
       <TheoremEnv type="definition" label="scaled-fields" title="Scaled Fields">
         <p>
-          For {"$\\lambda > 0$"}, define the <em>parabolic rescaling</em>
+          For {"$\\lambda > 0$"}, define the
+          <em> parabolic scaling </em>
+          of velocity, vorticity, and dyadic curvature:
         </p>
-        <div className="my-4">
-          <MathBlock
-            tex={
-              "u^{(\\lambda)}(x,t) = \\lambda \\, u(\\lambda x, \\lambda^2 t), \\quad \\omega^{(\\lambda)} = \\nabla \\times u^{(\\lambda)}, \\quad \\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)} \\label{rescale}"
-            }
-            display
-          />
-        </div>
-        <p>This scaling preserves the Navier–Stokes equations and the energy inequality.</p>
+
+        <MathBlock
+          tex={
+            "u^{(\\lambda)}(x,t) = \\lambda \\, u(\\lambda x, \\lambda^2 t), \\qquad \\omega^{(\\lambda)} = \\nabla \\times u^{(\\lambda)}, \\qquad \\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)}."
+          }
+          display
+        />
+
+        <p className="my-4">
+          This scaling preserves the form of the Navier–Stokes equations and the Leray–Hopf energy inequality.
+        </p>
+
+        <p className="my-4">
+          At the level of function spaces:
+        </p>
+
+        <ul className="list-disc list-inside ml-6 space-y-2">
+          <li>
+            <strong>Energy invariance. </strong>
+            {
+              "$u \\in L^\\infty_t L^2_x$"
+            }{" "}
+            implies
+            {" "}{
+              "$u^{(\\lambda)} \\in L^\\infty_t L^2_x$"
+            }{" "}
+            with identical norms.
+          </li>
+
+          <li>
+            <strong>Enstrophy invariance. </strong>
+            {
+              "$u \\in L^2_t \\dot H^1_x$"
+            }{" "}
+            implies {" "}
+            {
+              "$u^{(\\lambda)} \\in L^2_t \\dot H^1_x$"
+            }{" "}
+            with identical norms (criticality in 3D).
+          </li>
+
+          <li>
+            <strong>Vorticity scaling. </strong>  
+            {
+              "$\\omega^{(\\lambda)}(x,t) = \\lambda^2 \\, \\omega(\\lambda x, \\lambda^2 t)$"
+            }{" "}
+            and thus {" "}
+            {
+              "$\\Omega^{(\\lambda)} = \\lambda^4 (\\omega \\otimes \\omega)(\\lambda x, \\lambda^2 t)$"
+            }{" "}
+            behaves as a curvature-type tensor field.
+          </li>
+
+          <li>
+            <strong>Operator invariance. </strong>
+            All Calderón–Zygmund operators, in particular the Biot–Savart kernel,
+            commute compatibly with this scaling structure.
+          </li>
+        </ul>
       </TheoremEnv>
+
 
       <TheoremEnv type="definition" label="cz-op" title="Calderón–Zygmund Stretching Operator">
         <p>
-          Let {"$T$"} denote the Calderón–Zygmund singular integral operator associated with the Biot–Savart law,
-          defined by convolution with a kernel {"$K$"} satisfying
+          Let {"$T$"} be the Calderón–Zygmund singular integral operator associated with the Biot–Savart law.
+          For a tensor field {"$F : \\mathbb{R}^3 \\to \\mathbb{R}^{3 \\times 3}$"} define:
         </p>
-        <div className="my-4">
-          <MathBlock
-            tex={"|K(x)| \\lesssim |x|^{-3}, \\qquad \\int_{S^2} K = 0 \\label{kernel-bounds}"}
-            display
-          />
-        </div>
-        <p>The vortex stretching term in the vorticity equation is {"$T(\\omega \\otimes \\omega)$"}.</p>
+
+        <MathBlock
+          tex={
+            "T(F)(x) = \\mathrm{p.v.} \\int_{\\mathbb{R}^3} K(x-y) : F(y) \\, dy."
+          }
+          display
+        />
+
+        <p className="my-4">
+          The kernel {"$K$"} satisfies the classical size and cancellation conditions:
+        </p>
+
+        <MathBlock
+          tex={
+            "|K(x)| \\lesssim |x|^{-3}, \\qquad \\int_{S^2} K(\\theta) \\, d\\theta = 0."
+          }
+          display
+        />
+
+        <ul className="list-disc list-inside ml-6 space-y-2">
+
+          <li>
+            <strong>Boundedness. </strong>
+            For every {"$1 < p < \\infty$"},{" "}
+            {
+              "$T : L^p(\\mathbb{R}^3) \\to L^p(\\mathbb{R}^3)$"
+            }{" "}
+            is a bounded linear operator.
+          </li>
+
+          <li>
+            <strong>Vortex stretching identity. </strong>  
+            The nonlinear stretching term satisfies
+            {" "}{
+              "$(\\omega \\cdot \\nabla) u = T(\\omega \\otimes \\omega)$"
+            }{" "}
+            in distributions, and almost everywhere when {" "}
+            {
+              "$\\omega \\in L^2$"
+            }.
+            <br />
+          </li>
+
+          <li>
+            <strong>Divergence compatibility. </strong>
+            If {"$\\nabla \\cdot F = 0$"} row-wise then {" "}
+            {
+              "$\\nabla \\cdot T(F) = 0$"
+            }.
+            This ensures energy-consistent nonlocality.
+          </li>
+
+          <li>
+            <strong>Scale invariance. </strong>
+            Under parabolic scaling,
+            {" "}{
+              "$T(F^{(\\lambda)}) = \\lambda^3 \\, T(F)(\\lambda x)$"
+            },{" "}
+            which matches the criticality of vortex stretching in 3D.
+             <br />
+          </li>
+        </ul>
       </TheoremEnv>
+
+
 
       <h2>Proof by Contradiction</h2>
 
