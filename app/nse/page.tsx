@@ -135,7 +135,7 @@ export default function Page() {
         <div className="my-4">
         <MathBlock
           tex={
-            "u^{(\\lambda)}(x,t) = \\lambda \\, u(\\lambda x, \\lambda^2 t), \\qquad \\omega^{(\\lambda)} = \\nabla \\times u^{(\\lambda)}, \\qquad \\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)}."
+            "u^{(\\lambda)}(x,t) = \\lambda \\, u(\\lambda x, \\lambda^2 t), \\qquad \\omega^{(\\lambda)} = \\nabla \\times u^{(\\lambda)}, \\qquad \\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)}. \\label{scaled-fields}"
           }
           display
         /></div>
