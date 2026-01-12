@@ -247,3 +247,28 @@ pre {
   background: rgba(0,0,0,0.05);
   overflow-x: auto;
 }
+
+/* -------------------------------------------------------
+   Table of Contents Styles
+--------------------------------------------------------*/
+
+/* Ensure headings have some scroll margin for better navigation */
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: 2rem;
+}
+
+/* Add some padding to main content when TOC is visible */
+@media (min-width: 1024px) {
+  .has-toc-right {
+    padding-right: 20rem;
+  }
+  
+  .has-toc-left {
+    padding-left: 20rem;
+  }
+}
+
+/* Smooth scrolling for the entire document */
+html {
+  scroll-behavior: smooth;
+}

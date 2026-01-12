@@ -2,14 +2,17 @@ import Eq from "../components/Eq";
 import MathBlock from "../components/MathBlock";
 import TheoremEnv from "../components/TheoremEnv";
 import TheoremRef from "../components/TheoremRef";
+import ClientTableOfContents from "../components/ClientTableOfContents";
 
 export default function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-10">
-      <h1>Global Regularity Program for Leray–Hopf Solutions in {"$\\mathbb{R}^3$"}</h1>
+    <>
+      <ClientTableOfContents position="right" />
+      <main className="mx-auto max-w-3xl px-6 py-10">
+        <h1>Global Regularity Program for Leray–Hopf Solutions in {"$\\mathbb{R}^3$"}</h1>
 
       <section className="mb-8">
-        <h2>Problem Statement and Disclaimer</h2>
+        <h2 id="problem-statement">Problem Statement and Disclaimer</h2>
         <p>
           Consider the three-dimensional incompressible Navier–Stokes equations
         </p>
@@ -36,7 +39,7 @@ export default function Page() {
         </p>
       </section>
 
-      <h2>Definitions</h2>
+      <h2 id="definitions">Definitions</h2>
 
       <TheoremEnv type="definition" label="leray-hopf" title="Leray–Hopf Weak Solution">
         <p>
@@ -257,16 +260,12 @@ export default function Page() {
         </ul>
       </TheoremEnv>
 
-
-
-      <h2>Proof by Contradiction</h2>
-
       <p>
         We proceed by contradiction. Assume blow-up occurs at some {"$(x_0, t_0)$"}. Without loss of generality, set{" "}
         {"$x_0 = 0$"} and {"$t_0 = 0$"}.
       </p>
 
-      <h2>Scaling and Compactness</h2>
+      <h2 id="scaling-compactness">Scaling and Compactness</h2>
 
       <TheoremEnv type="lemma" label="scaling" title="Scaling Invariance and Local Compactness">
         <p>There exists {"$\\lambda_k \\to \\infty$"} such that</p>
@@ -343,7 +342,7 @@ export default function Page() {
         continuity in {"$L^2$"}. Thus {"$u^\\infty$"} satisfies all Leray–Hopf axioms backward in time. ∎
       </p>
 
-      <h2>Structure of the Defect</h2>
+      <h2 id="structure-defect">Structure of the Defect</h2>
 
       <TheoremEnv type="lemma" label="defect" title="Rank-1 Morrey-1 Structure of the Defect Measure">
         <p>The defect {"$\\mathfrak{m}$"} satisfies:</p>
@@ -383,7 +382,7 @@ export default function Page() {
         <p>{"$\\mathfrak{m}$"} has finite 1-dimensional parabolic density at every point.</p>
       </TheoremEnv>
 
-      <h2>Calderón–Zygmund Analysis</h2>
+      <h2 id="calderon-zygmund">Calderón–Zygmund Analysis</h2>
 
       <TheoremEnv type="lemma" label="cz-limit" title="CZ Operator Continuity on Measure Limits">
         <p>
@@ -502,7 +501,7 @@ export default function Page() {
         </p>
       </TheoremEnv>
 
-      <h2>Annihilation of the Defect</h2>
+      <h2 id="annihilation-defect">Annihilation of the Defect</h2>
 
       <TheoremEnv type="lemma" label="annihil" title="Finite-Energy Ancient Solution Forces Annihilation">
         <p>
@@ -540,7 +539,7 @@ export default function Page() {
         <p>The nonlinear term converges strongly in {"$L^1_{\\mathrm{loc}}$"}.</p>
       </TheoremEnv>
 
-      <h2>Strong Convergence and Exact Equation</h2>
+      <h2 id="strong-convergence">Strong Convergence and Exact Equation</h2>
 
       <TheoremEnv type="lemma" label="strong-conv" title="Strong Convergence of Dyadic">
         <p>We have</p>
@@ -575,7 +574,7 @@ export default function Page() {
         <em>Proof.</em> Substitute {"$\\mathfrak{m} = 0$"} into <TheoremRef label="ancient-vort" />. ∎
       </p>
 
-      <h2>Liouville Theorem and Contradiction</h2>
+      <h2 id="liouville-theorem">Liouville Theorem and Contradiction</h2>
 
       <TheoremEnv type="lemma" label="liouville" title="Liouville-Type Vanishing of Ancient Finite-Energy Solutions">
         <p>
@@ -631,7 +630,7 @@ export default function Page() {
         cannot collapse to zero unless the original sequence did so, contradicting normalization. ∎
       </p>
 
-      <h2>Main Result</h2>
+      <h2 id="main-result">Main Result</h2>
 
       <TheoremEnv type="theorem" label="main" title="No Blow-Up for Leray–Hopf Solutions">
         <p>
@@ -651,7 +650,7 @@ export default function Page() {
         <strong>Therefore all Leray–Hopf solutions on {"$\\mathbb{R}^3$"} are smooth for all {"$t > 0$"}.</strong> ∎
       </p>
 
-      <h2>Equation Index</h2>
+      <h2 id="equation-index">Equation Index</h2>
       <ul className="list-disc list-inside space-y-1">
         <li>
           Navier–Stokes equations: Eq <Eq label="nse" />
@@ -730,7 +729,7 @@ export default function Page() {
         </li>
       </ul>
 
-      <h2 className="mt-8">Program Status and Open Technical Steps</h2>
+      <h2 id="program-status" className="mt-8">Program Status and Open Technical Steps</h2>
       <p className="mt-2">
         This page records a high-level program towards global regularity for Leray–Hopf solutions. Several analytic
         components are stated in a schematic or heuristic form and require full technical development and verification.
@@ -773,5 +772,6 @@ export default function Page() {
         completed, fully verified resolution of the Navier–Stokes Millennium problem.
       </p>
     </main>
+    </>
   );
 }
