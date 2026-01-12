@@ -135,7 +135,7 @@ export default function Page() {
         <div className="my-4">
         <MathBlock
           tex={
-            "u^{(\\lambda)}(x,t) = \\lambda \\, u(\\lambda x, \\lambda^2 t), \\qquad \\omega^{(\\lambda)} = \\nabla \\times u^{(\\lambda)}, \\qquad \\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)}. \\label{scaled-fields}"
+            "u^{(\\lambda)}(x,t) = \\lambda \\, u(\\lambda x, \\lambda^2 t), \\qquad \\omega^{(\\lambda)} = \\nabla \\times u^{(\\lambda)}, \\qquad \\Omega^{(\\lambda)} = \\omega^{(\\lambda)} \\otimes \\omega^{(\\lambda)}. \\label{rescaled-fields}"
           }
           display
         /></div>
@@ -663,13 +663,13 @@ export default function Page() {
           Navier–Stokes equations: Eq <Eq label="nse" />
         </li>
         <li>
-          Energy inequality: Eq <Eq label="energy-ineq" />
+          Solenoidal constraint: Eq <Eq label="solenoidal-constraint" />
         </li>
         <li>
-          Scaled fields: Eq <Eq label="rescale" />
+          Weak formulation: Eq <Eq label="weak-form" />
         </li>
         <li>
-          Kernel bounds: Eq <Eq label="kernel-bounds" />
+          Scaled fields: Eq <Eq label="rescaled-fields" />
         </li>
         <li>
           Velocity convergence: Eq <Eq label="u-conv" />
