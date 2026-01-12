@@ -97,10 +97,6 @@ export default function TableOfContents({
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Close mobile menu after clicking if we're on mobile
-      if (typeof window !== 'undefined' && window.innerWidth < config.mobileBreakpoint) {
-        setIsOpen(false);
-      }
     }
   };
 
@@ -112,34 +108,11 @@ export default function TableOfContents({
 
   return (
     <>
-      {/* Mobile toggle button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 right-4 z-50 lg:hidden bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-        aria-label="Toggle table of contents"
-      >
-        <svg 
-          className="w-5 h-5" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-          />
-        </svg>
-      </button>
-
-      {/* Table of Contents */}
+      {/* Table of Contents - Desktop only */}
       <nav
         className={`
           fixed top-20 ${positionClasses} z-40 w-48 max-h-[calc(100vh-6rem)]
-          transition-transform duration-300 ease-in-out
-          ${isOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'}
-          ${config.position === 'left' && !isOpen ? '-translate-x-full lg:translate-x-0' : ''}
+          hidden lg:block
           ${className}
         `}
       >
@@ -184,14 +157,6 @@ export default function TableOfContents({
           </div>
         </div>
       </nav>
-
-      {/* Mobile overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-25 z-30 lg:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
     </>
   );
 }

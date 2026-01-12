@@ -97,12 +97,13 @@ export default function Page() {
               "$\\varphi \\in C_c^\\infty(\\mathbb{R}^3 \\times (0,T); \\mathbb{R}^3)$"
             }{" "}
             with {"$\\nabla \\,\\cdot \\, \\varphi = 0$"}:
+            <div className="my-4">
             <MathBlock
               tex={
                 "\\int_0^T \\! \\int_{\\mathbb{R}^3} \\Big( -u \\cdot \\partial_t \\varphi - (u \\otimes u) : \\nabla \\varphi + 2\\nu \\, \\nabla u : \\nabla \\varphi \\Big) \\, dx \\, dt = \\int_{\\mathbb{R}^3} u_0(x) \\cdot \\varphi(x,0) \\, dx."
               }
               display
-            />
+            /> </div>
             <p>
               The pressure {"$p$"} is recovered (up to time-dependent harmonic polynomials) through the Leray projector and satisfies
               {" "}{"$p \\in L^{3/2}_{\\mathrm{loc}}$"}.
@@ -112,12 +113,14 @@ export default function Page() {
           <li>
             <strong>Energy inequality. </strong>
             For almost every {"$t \\in (0,T)$"}:
+            <div className="my-4">
             <MathBlock
               tex={
                 "\\|u(t)\\|_{L^2}^2 + 2\\nu \\int_0^t \\|\\nabla u(s)\\|_{L^2}^2 \\, ds \\leq \\|u_0\\|_{L^2}^2."
               }
               display
             />
+            </div>
           </li>
         </ol>
       </TheoremEnv>
@@ -175,10 +178,14 @@ export default function Page() {
             {
               "$\\omega^{(\\lambda)}(x,t) = \\lambda^2 \\, \\omega(\\lambda x, \\lambda^2 t)$"
             }{" "}
-            and thus {" "}
-            {
-              "$\\Omega^{(\\lambda)} = \\lambda^4 (\\omega \\otimes \\omega)(\\lambda x, \\lambda^2 t)$"
-            }{" "}
+            and thus
+
+            <MathBlock
+          tex={
+            "\\Omega^{(\\lambda)} = \\lambda^4 (\\omega \\otimes \\omega)(\\lambda x, \\lambda^2 t)"
+          }
+          display
+        />
             behaves as a curvature-type tensor field.
           </li>
 
