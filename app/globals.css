@@ -89,6 +89,32 @@ body {
     max-width: calc(100vw - 6rem);
     overflow-x: auto;
   }
+
+  /* Fix equations inside lists on mobile */
+  li .katex-eq {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 4rem;
+  }
+  
+  li .katex-eq .katex {
+    max-width: calc(100vw - 8rem);
+    overflow-x: auto;
+  }
+
+  /* Handle nested list equations */
+  ol li .katex-eq, ul li .katex-eq {
+    margin-left: -2rem;
+    margin-right: -1rem;
+    padding-left: 2rem;
+  }
+
+  /* Extra nested lists */
+  ol li ul li .katex-eq, ul li ol li .katex-eq {
+    margin-left: -3rem;
+    padding-left: 3rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -103,6 +129,28 @@ body {
   
   .katex-eq .katex {
     max-width: calc(100vw - 5rem);
+  }
+
+  /* Even tighter spacing for very small screens */
+  li .katex-eq {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 3.5rem;
+  }
+  
+  li .katex-eq .katex {
+    max-width: calc(100vw - 6rem);
+  }
+
+  ol li .katex-eq, ul li .katex-eq {
+    margin-left: -1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  ol li ul li .katex-eq, ul li ol li .katex-eq {
+    margin-left: -2.5rem;
+    padding-left: 2.5rem;
   }
 }
 

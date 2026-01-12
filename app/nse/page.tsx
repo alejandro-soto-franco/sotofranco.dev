@@ -83,7 +83,7 @@ export default function Page() {
             <div className="my-4">
           <MathBlock
             tex={
-              "\\displaystyle \\int_0^T \\! \\int_{\\mathbb{R}^3} u \\cdot \\nabla \\phi \\, dx \\, dt = 0."
+              "\\displaystyle \\int_0^T \\! \\int_{\\mathbb{R}^3} u \\cdot \\nabla \\phi \\, dx \\, dt = 0. \\label{solenoidal-constraint}"
             }
             display
           />
@@ -100,7 +100,7 @@ export default function Page() {
             <div className="my-4">
             <MathBlock
               tex={
-                "\\int_0^T \\! \\int_{\\mathbb{R}^3} \\Big( -u \\cdot \\partial_t \\varphi - (u \\otimes u) : \\nabla \\varphi + 2\\nu \\, \\nabla u : \\nabla \\varphi \\Big) \\, dx \\, dt = \\int_{\\mathbb{R}^3} u_0(x) \\cdot \\varphi(x,0) \\, dx."
+                "\\int_0^T \\! \\int_{\\mathbb{R}^3} \\Big( -u \\cdot \\partial_t \\varphi - (u \\otimes u) : \\nabla \\varphi + 2\\nu \\, \\nabla u : \\nabla \\varphi \\Big) \\, dx \\, dt = \\int_{\\mathbb{R}^3} u_0(x) \\cdot \\varphi(x,0) \\, dx. \\label{weak-form}"
               }
               display
             /> </div>
