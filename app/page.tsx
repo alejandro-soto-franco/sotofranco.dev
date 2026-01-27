@@ -22,11 +22,32 @@ export default function Home() {
       relational value dynamics, and mathematical physics.
       </p>
 
-
-        {/* Navigation */}
-        <nav className="space-y-3">
-          <SectionLink href="/nse">Navier-Stokes Program</SectionLink>
-        </nav>
+        {/* Publications */}
+        <section className="space-y-3">
+          <h2 className="text-2xl font-semibold tracking-tight">Publications</h2>
+          <ul className="space-y-2">
+            <li>
+              <a 
+                href="/pdfs/ASF_vorticity_dyadic_FINAL_v1.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-lg text-neutral-900 hover:text-black dark:text-neutral-200 dark:hover:text-white underline"
+              >
+                The vorticity direction dyadic for the 3D Navier-Stokes equations
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/pdfs/ASF_incomp_fluid_mechanics_WIP_v1.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-lg text-neutral-900 hover:text-black dark:text-neutral-200 dark:hover:text-white underline"
+              >
+                Introduction to incompressible fluid mechanics (work-in-progress, v1)
+              </a>
+            </li>
+          </ul>
+        </section>
 
         {/* Footer */}
         <footer className="pt-10 text-neutral-500 text-sm dark:text-neutral-400">
