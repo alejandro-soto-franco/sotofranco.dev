@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientKatex from "./components/ClientKatex";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Alejandro Soto Franco",
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body className="antialiased font-body bg-[var(--background)] text-[var(--foreground)]">
         <ClientKatex />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
