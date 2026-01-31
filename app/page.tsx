@@ -46,6 +46,16 @@ export default function Home() {
                 Introduction to incompressible fluid mechanics (work-in-progress, v1)
               </a>
             </li>
+            <li>
+              <a 
+                href="/pdfs/2503.10880v2.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-lg text-neutral-900 hover:text-black dark:text-neutral-200 dark:hover:text-white underline"
+              >
+                Spontaneous optimal mixing via defect-vortex coupling in confined active nematics
+              </a>
+            </li>
           </ul>
         </section>
 
